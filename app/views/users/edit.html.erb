@@ -1,0 +1,24 @@
+<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  <!--バリデーション-->
+  <% if @user.errors.any? %>
+  <h1><%= @user.errors.count %>error prohibited this obj from being saved:</h1>
+  <% @user.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+<h1>User info</h1>
+
+<%= form_with model: @user,url:user_path(@user.id) , local: true do |f| %>
+              <%= f.label :name %><br>
+              <%= f.text_field :name ,class: 'form-control name'%><br>
+
+              <%= attachment_image_tag @user, :profile_image, :fill, 40, 40 %>
+                <%= f.label 'Image' %><br>
+                <%= f.attachment_field :profile_image%><br>
+
+              <%= f.label :introduction %><br>
+              <%= f.text_area :introduction,class: 'form-control introduction' %>
+
+              <%= f.submit 'Update User',class: 'btn btn-secondary my-3' %>
+          <% end %>
+</div>

@@ -1,0 +1,24 @@
+
+<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  <!--バリデーション-->
+  <% if @book.errors.any? %>
+  <h1><%= @book.errors.count %>errors prohibited this obj from being saved:</h1>
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+<h1>Editing Book</h1>
+
+<%= form_with model: @book,url:book_path(@book.id) , local: true do |f| %>
+              <%= f.label :title %><br>
+              <%= f.text_field :title ,class: 'col form-control book_title'%>
+<br>
+              <%= f.label :body %><br>
+              <%= f.text_area :body,class: 'col form-control book_body' %>
+
+              <%= f.submit 'Update Book',class: 'btn btn-success my-3' %>
+          <% end %>
+
+          <%= link_to "Show", book_path(@book.id) %> |
+          <%= link_to "Back", books_path %>
+</div>
